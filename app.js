@@ -9,7 +9,7 @@ const shopRoutes = require('./routes/shop')
 
 const app = express()
 
-app.set('view engine','pug')
+app.set('view engine','ejs')
 //app.set('views','nom du dossier') pour utiliser un autre dossier pour les views
 
 app.use(bodyParser.urlencoded({extended: false}))
