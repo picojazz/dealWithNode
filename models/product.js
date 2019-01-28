@@ -13,18 +13,32 @@ module.exports = class Product{
 
     save() {
         console.log(p)
-        const products = JSON.parse(fs.readFileSync(p))
+        let products = [];
+        fs.readFile(p, (err,data) => {
+            if(err) console.log(err);
+            products = JSON.parse(data);
             products.push(this)
-                fs.writeFile(p,JSON.stringify(products),(err) =>{
+            console.log(products)
+            fs.writeFile(p,JSON.stringify(products),(err) =>{
                     console.log(err)
                 })
+        });
+        
+
+            
+                
             
         
     }
 
-    static fetchAll() {
+    static fetchAll(cb) {
+
+        fs.readFile(p, (err,data) => {
+            if(err) return cb([])
+            return cb(JSON.parse(data))
+        });
         
-       return JSON.parse(fs.readFileSync(p))
+       
         
     }
 }

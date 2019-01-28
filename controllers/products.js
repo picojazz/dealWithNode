@@ -16,13 +16,15 @@ exports.postAddProduct = (req,res,next) => {
  }
 
 exports.getProduct = (req,res,next) => {
-    const products = Product.fetchAll()
-    console.log('home')
-    //console.log(adminData.products)
-    res.render('shop',
+    const products = Product.fetchAll((products) => {
+        res.render('shop',
     {   prods: products,
         pageTitle: 'Shop',
         path: '/'
     });
+    })
+    console.log('home')
+    //console.log(adminData.products)
+    
     
  }
